@@ -1,4 +1,3 @@
-import java.util.*;
 // Kadane's Algorithm
 public class maxsubarray {
     public static void MSA(int number[]) {
