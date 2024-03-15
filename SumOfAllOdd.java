@@ -13,8 +13,8 @@ public class SumOfAllOdd {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
-        // int result = SumOdd(number);
         System.out.println(SumOdd(number));
+        
         sc.close();
     }
 }
