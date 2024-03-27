@@ -33,9 +33,9 @@ public class lonely {
         list.add(3);
         list.add(5);
         list.add(3);
-        for (Integer num : list) {
-            System.out.println(num);
-        }
+        // for (Integer num : list) {
+        //     System.out.println(num);
+        // }
         System.out.println(lonelyfinder(list));
     }
 }
