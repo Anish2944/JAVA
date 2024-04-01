@@ -14,6 +14,20 @@ public class countstr{
                     count++;
                 }
             }
+            // long totalCount = 0;
+            // long fullRepeats = n / s.length();
+            // int remainingChars = (int) (n % s.length());
+
+            // // Count 'a' occurrences in the original string
+            // for (int i = 0; i < s.length(); i++) {
+            //     if (s.charAt(i) == 'a') {
+            //         totalCount += fullRepeats;
+            //         if (i < remainingChars) {
+            //             totalCount++;
+            //         }
+            //     }
+            // }
+
             return count;
         }
     public static void main(String[] args) {
