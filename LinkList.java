@@ -95,6 +95,41 @@ public class LinkList {
         size--;
         return value;
      }
+     public void deleteNode(int key) {
+        if (head == null) {
+            return;
+        }
+        if (head.data == key) {
+            head = head.next;
+            size--;
+            return;
+        }
+        Node prevNode = head;
+        Node currNode = head.next;
+        while (currNode != null) {
+            if (currNode.data == key) {
+                prevNode.next = currNode.next;
+                size--;
+                return;
+            }
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+    }
+    
+     public void search(int key){
+        Node tempNode = head;
+        int i = 1;
+        while (tempNode != null) {
+            if (tempNode.data == key) {
+                System.out.println("Found at Location " + i);
+                return;
+            }
+            tempNode = tempNode.next;
+            i++;
+        }
+        System.out.println("Not Found");
+     }
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
         linkList.addHead(2);
@@ -105,7 +140,10 @@ public class LinkList {
         linkList.print();
         // linkList.removeHead();
         // linkList.print();
-        linkList.removeLast();
+        // linkList.removeLast();
+        // linkList.print();
+        // linkList.search(4);
+        linkList.deleteNode(3);
         linkList.print();
         System.out.println(linkList.size);
     }
