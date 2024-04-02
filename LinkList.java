@@ -145,6 +145,6 @@ public class LinkList {
         // linkList.search(4);
         linkList.deleteNode(3);
         linkList.print();
-        System.out.println(linkList.size);
+        System.out.println(LinkList.size);
     }
 }
