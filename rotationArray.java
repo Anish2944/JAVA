@@ -12,8 +12,8 @@ public class rotationArray {
         return arr;
     }
     public static void main(String[] args) {
-        int[] arr =new int[]{1,2,3,4,5};
-        Rotation(arr, 4);
+        int[] arr =new int[]{33, 47, 70, 37, 8, 53, 13, 93, 71, 72, 51, 100, 60, 87, 97};
+        Rotation(arr, 13);
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
