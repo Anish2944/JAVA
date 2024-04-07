@@ -130,20 +130,100 @@ public class LinkList {
         }
         System.out.println("Not Found");
      }
+     public Node reverse(Node head){
+        Node prevNode = null;
+        Node currNode = tail = head;
+        Node nexNode;
+        while (currNode != null) {
+            nexNode = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nexNode;
+        }
+        head = prevNode;
+        return head;
+     }
+     public Node getmidNode(Node head){
+        Node slowNode = head;
+        Node fastNode = head;
+        while (fastNode != null && fastNode.next != null) {
+            slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
+        }
+        return slowNode;
+     }
+     public boolean checkPalindrome(){
+        if (head  == null || head.next == null) {
+            return true;
+        }
+        Node midNode = getmidNode(head);
+
+        // Node prev = null;
+        // Node curr = midNode;
+        // Node nextNode;
+        // while (curr != null) {
+        //     nextNode = curr.next;
+        //     curr.next = prev;
+        //     prev = curr;
+        //     curr = nextNode;
+        // }
+        
+        Node rightNode = reverse(midNode);;
+        Node leftNode = head;
+
+        while (rightNode != null) {
+            if (leftNode.data != rightNode.data) {
+                return false;
+            }
+            leftNode = leftNode.next;
+            rightNode = rightNode.next;
+        }
+        return true;
+     }
+
+     public Node zigzagList(){
+        if (head == null && head.next == null) {
+            return head;
+        }
+        Node midNode = getmidNode(head);
+        Node rightNode = reverse(midNode.next);
+        midNode.next = null;
+        Node leftNode = head;
+        Node tempNode = new Node(-1);
+        Node currNode = tempNode;
+        int flag = 0;
+        while (rightNode != null && leftNode != null) {
+            if (flag == 0 && leftNode != null) {
+                currNode.next = leftNode;
+                leftNode = leftNode.next;
+            } else if (rightNode != null) {
+                currNode.next = rightNode;
+                rightNode = rightNode.next;
+            }
+            currNode = currNode.next;
+            flag = 1 - flag;
+        }
+        currNode.next = leftNode;
+        return tempNode.next;
+     }
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
         linkList.addHead(2);
         linkList.addHead(1);
+        linkList.addLast(3);
         linkList.addLast(4);
         linkList.addLast(5);
-        linkList.add(2, 3);
+        // linkList.add(2, 3);
         linkList.print();
         // linkList.removeHead();
         // linkList.print();
         // linkList.removeLast();
         // linkList.print();
         // linkList.search(4);
-        linkList.deleteNode(3);
+        // linkList.deleteNode(3);
+        // linkList.reverse();
+        // System.out.println(linkList.checkPalindrome());
+        linkList.zigzagList();
         linkList.print();
         System.out.println(LinkList.size);
     }
