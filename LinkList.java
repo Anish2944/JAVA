@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class LinkList {
     public class Node {
         int data;
@@ -58,6 +60,17 @@ public class LinkList {
         }
         System.out.println("null");
     }
+    public void print(Node head){
+        if (head == null) {
+            System.out.println("null");
+        }
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
      public int removeHead(){
         if (size == 0) {
             System.out.println("link list is empty");
@@ -95,7 +108,7 @@ public class LinkList {
         size--;
         return value;
      }
-     public void deleteNode(int key) {
+     public void deleteNodeUsingData(int key) {
         if (head == null) {
             return;
         }
@@ -116,6 +129,25 @@ public class LinkList {
             currNode = currNode.next;
         }
     }
+
+    public void deleteNodeUsingIndex(int index) {
+        if (head == null) {
+            return;
+        }
+        if (index == 0) {
+            head = head.next;
+            size--;
+            return;
+        }
+        Node prevNode = head;
+        Node currNode = head.next;
+        for (int i = 0; i < index - 1; i++) {
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+        prevNode.next = currNode.next;
+        size--;
+    }
     
      public void search(int key){
         Node tempNode = head;
@@ -130,6 +162,40 @@ public class LinkList {
         }
         System.out.println("Not Found");
      }
+     public void question2(int m, int n){
+        Node temp = head;
+        Node t;
+        while (temp != null) {
+            for (int i = 0; i < m-1 && temp != null; i++) {
+                temp = temp.next;
+            }
+            if (temp == null) {
+                return;
+            }
+            t = temp.next;
+            for (int i = 1; i <= n && temp != null; i++) {
+                Node curNode = t;
+                t = t.next;
+                size--;
+            }
+            temp.next = t;
+            temp = t;
+        }
+     }
+     public void swapNode(int key1, int key2){
+        Node tempNode = head;
+        while (tempNode != null) {
+            if (tempNode.data == key1) {
+                tempNode.data = key2;
+                tempNode = tempNode.next;
+            }
+            if (tempNode.data == key2) {
+                tempNode.data = key1;
+            }
+            tempNode = tempNode.next;
+        }
+     }
+
      public Node reverse(Node head){
         Node prevNode = null;
         Node currNode = tail = head;
@@ -206,6 +272,35 @@ public class LinkList {
         currNode.next = leftNode;
         return tempNode.next;
      }
+     public Node OddEvenList(){
+        Node temp = head;
+        Node list1 = null;
+        Node curr = null;
+        Node list2 = null;
+        Node curr2 = null;
+        while (temp != null) {
+            if (temp.data % 2 == 0) {
+                if (list1 == null) {
+                    list1 = new Node(temp.data);
+                    curr = list1;
+                } else{
+                    curr.next = new Node(temp.data);
+                    curr = curr.next;
+                }
+            } else {
+                if (list2 == null) {
+                    list2 = new Node(temp.data);
+                    curr2 = list2;
+                } else{
+                    curr2.next = new Node(temp.data);
+                    curr2 = curr2.next;
+                }
+            }
+            temp = temp.next;
+        }
+        curr.next = list2;
+        return list1;
+     }
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
         linkList.addHead(2);
@@ -213,6 +308,10 @@ public class LinkList {
         linkList.addLast(3);
         linkList.addLast(4);
         linkList.addLast(5);
+        linkList.addLast(6);
+        linkList.addLast(7);
+        linkList.addLast(8);
+        linkList.addLast(9);
         // linkList.add(2, 3);
         linkList.print();
         // linkList.removeHead();
@@ -223,8 +322,11 @@ public class LinkList {
         // linkList.deleteNode(3);
         // linkList.reverse();
         // System.out.println(linkList.checkPalindrome());
-        linkList.zigzagList();
-        linkList.print();
+        // linkList.zigzagList();
+        // linkList.question2(2, 2);
+        // linkList.swapNode(2,3);
+        
+        linkList.print(linkList.OddEvenList());
         System.out.println(LinkList.size);
     }
 }
